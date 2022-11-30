@@ -1,0 +1,17 @@
+FROM alpine:latest
+
+RUN apk add --no-cache build-base cmake automake \
+        autoconf libtool pkgconf coreutils \
+        curl unzip gettext-tiny-dev git libgcc
+
+RUN  git clone https://github.com/neovim/neovim.git && \
+  cd neovim && \
+  make && \
+  make install && \
+  cd ../ && rm -rf neovim 
+
+RUN apk del build-base cmake automake \
+        autoconf libtool pkgconf coreutils \
+        curl unzip gettext-tiny-dev
+
+ENTRYPOINT ["nvim"]
