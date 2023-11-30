@@ -3,6 +3,8 @@ services:
   nvim:
     # image: ph-nvim
     build: .
+    environment:
+      DISABLE_LEVEL: true
     volumes:
       - nvim_home:/root/.local
       - nvim_projects:/projects
