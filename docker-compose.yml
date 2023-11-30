@@ -1,9 +1,14 @@
 version: "3.9"
 services:
   nvim:
-    image: pedrohms/nvim-nightly
+    # image: ph-nvim
+    build: .
     volumes:
-      - ~/.config/nvim:/root/.config/nvim
-      - ~/.local/share/nvim:/root/.local/share/nvim
-      - ~/Projects:/Projects
+      - nvim_home:/root/.local
+      - nvim_projects:/projects
     tty: true
+volumes:
+  nvim_home:
+    name: nvim_home
+  nvim_projects:
+    name: nvim_projects
